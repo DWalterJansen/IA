@@ -1,6 +1,7 @@
 #Imports
 import numpy as np
 import random as rd
+import time as tm
 from IPython.display import clear_output
 
 #Variable
@@ -53,17 +54,87 @@ campComputer = np.array([rowI, row0, row1, row2, row3, row4, row5, row6, row7, r
 campShots = np.array([rowI, row0, row1, row2, row3, row4, row5, row6, row7, row8, row9]) # Campo para guardar os tiros do jogador
 
 #Methods
+def clear():
+    for i in range(100):
+        print("\n")
+
 def showCampPlayer():
     global campPlayer
-    print(*campPlayer, sep='\n')
-    
+    #print(*campPlayer, sep='\n')
+    for i in range(11):
+        print("[", end='')
+        for j in range(10):
+            if(campPlayer[i,j] == '-'):
+                print("\x1b[44m'-'\x1b[0m,", end='')                
+            elif(campPlayer[i,j] == '*'):
+                print("\x1b[42m'*'\x1b[0m,", end='')                
+            elif(campPlayer[i,j] == '+'):
+                print("\x1b[41m'+'\x1b[0m,", end='')                
+            else:
+                print("\x1b[47m'%s'\x1b[0m," %campPlayer[i,j], end='')
+                
+        #Última coluna
+        if(campPlayer[i,10] == '-'):
+                print("\x1b[44m'-'\x1b[0m", end='')          
+        elif(campPlayer[i,10] == '*'):
+            print("\x1b[42m'*'\x1b[0m", end='')
+        elif(campPlayer[i,10] == '+'):
+            print("\x1b[41m'+'\x1b[0m", end='')
+        else:
+            print("\x1b[47m'%s'\x1b[0m" %campPlayer[i,10], end='')
+        print("]")
+
 def showCampComputer():
     global campComputer
-    print(*campComputer, sep='\n')
+    #print(*campComputer, sep='\n')
+    for i in range(11):
+        print("[", end='')
+        for j in range(10):
+            if(campComputer[i,j] == '-'):
+                print("\x1b[44m'-'\x1b[0m,", end='')                
+            elif(campComputer[i,j] == '*'):
+                print("\x1b[42m'*'\x1b[0m,", end='')                
+            elif(campComputer[i,j] == '+'):
+                print("\x1b[41m'+'\x1b[0m,", end='')                
+            else:
+                print("\x1b[47m'%s'\x1b[0m," %campComputer[i,j], end='')
+                
+        #Última coluna
+        if(campComputer[i,10] == '-'):
+                print("\x1b[44m'-'\x1b[0m", end='')          
+        elif(campComputer[i,10] == '*'):
+            print("\x1b[42m'*'\x1b[0m", end='')
+        elif(campComputer[i,10] == '+'):
+            print("\x1b[41m'+'\x1b[0m", end='')
+        else:
+            print("\x1b[47m'%s'\x1b[0m" %campComputer[i,10], end='')
+        print("]")
     
 def showCampShots():
     global campShots
-    print(*campShots, sep='\n')
+    #print(*campShots, sep='\n')
+    for i in range(11):
+        print("[", end='')
+        for j in range(10):
+            if(campShots[i,j] == '-'):
+                print("\x1b[44m'-'\x1b[0m,", end='')                
+            elif(campShots[i,j] == '*'):
+                print("\x1b[42m'*'\x1b[0m,", end='')                
+            elif(campShots[i,j] == '+'):
+                print("\x1b[41m'+'\x1b[0m,", end='')                
+            else:
+                print("\x1b[47m'%s'\x1b[0m," %campShots[i,j], end='')
+                
+        #Última coluna
+        if(campShots[i,10] == '-'):
+                print("\x1b[44m'-'\x1b[0m", end='')          
+        elif(campShots[i,10] == '*'):
+            print("\x1b[42m'*'\x1b[0m", end='')
+        elif(campShots[i,10] == '+'):
+            print("\x1b[41m'+'\x1b[0m", end='')
+        else:
+            print("\x1b[47m'%s'\x1b[0m" %campShots[i,10], end='')
+        print("]")
 
 def addBoatPlayer(row, column):
     global campPlayer
@@ -109,6 +180,9 @@ def shotPlayer(row, column):
 
 # IA básico
 def shotComputer():
+    #Tempo de espera em segundos
+    tm.sleep(2)
+        
     global computerShots
     global campPlayer
     global playerParts
@@ -170,9 +244,10 @@ def shotComputer():
                 right = False
                 return True
 
+###########################################################################
 #Inicialização dos Campos
-print("\nPosicione seus navios...")
 for i in range(1,5):
+    print("\nPosicione seus navios...")
     showCampPlayer()
     while True:
         print("\n\n%dº barco:" %i)
@@ -199,8 +274,10 @@ for i in range(1,5):
         else:
             print("Posição inválida")
     addBoatComputer()
+    clear()
 showCampPlayer()
-
+print("\nBarcos Posicionados...")
+###########################################################################
 #Realização de Jogadas
 startLottery = rd.randrange(1,3)
 if (startLottery == 1):
@@ -241,6 +318,8 @@ while True:
         if (playerParts == 0):
             print("Computador ganhou!")
             break
+        input("pressione 'Enter' para a próxima rodada...")
+        clear()
     # se o computador começa
     else:
         # Vez do computador
@@ -272,3 +351,5 @@ while True:
         if computerParts == 0 :
             print("Você ganhou!")
             break
+        input("pressione 'Enter' para a próxima rodada...")
+        clear()
