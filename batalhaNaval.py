@@ -291,92 +291,97 @@ def shotComputer():
     global left
     global remainingRow
     global remainingColumn
-    if (parts == False):
-        while (True):
-            row = rd.randrange(1, 11)
-            column = rd.randrange(1, 11)
-            if ([row, column] not in computerShots):
-                computerShots.append([row,column])
-                break
-        print("Tiro em %d, %d" %(row - 1,column - 1))
-        if (campPlayer[row, column] == '*'):
-            print("Acertou!")
-            playerParts -= 1
-            campPlayer[row, column] = '+'
-            remainingRow = row
-            remainingColumn = column
-            parts = True
-            return True
-        else:
-            print("Errou!")
-            campPlayer[row, column] = '-'
-            return True
-    elif (right == False):
-        if (remainingColumn + 1 < 11):
-            print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn))
-            if campPlayer[remainingRow, remainingColumn + 1] == '*':
-                computerShots.append([remainingRow, remainingColumn + 1])
-                print("Afundou!")
+    
+    while True:
+        if (parts == False):
+            while (True):
+                row = rd.randrange(1, 11)
+                column = rd.randrange(1, 11)
+                if ([row, column] not in computerShots):
+                    computerShots.append([row,column])
+                    break
+            print("Tiro em %d, %d" %(row - 1,column - 1))
+            if (campPlayer[row, column] == '*'):
+                print("Acertou!")
                 playerParts -= 1
-                campPlayer[remainingRow, remainingColumn + 1] = '+'
-                parts = False
-                #right = False
+                campPlayer[row, column] = '+'
+                remainingRow = row
+                remainingColumn = column
+                parts = True
                 return True
             else:
-                computerShots.append([remainingRow, remainingColumn + 1])
                 print("Errou!")
-                campPlayer[remainingRow, remainingColumn + 1] = '-'
+                campPlayer[row, column] = '-'
+                return False
+        elif (right == False):
+            if (remainingColumn + 1 < 11):
+                print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn))
+                if campPlayer[remainingRow, remainingColumn + 1] == '*':
+                    computerShots.append([remainingRow, remainingColumn + 1])
+                    print("Afundou!")
+                    playerParts -= 1
+                    campPlayer[remainingRow, remainingColumn + 1] = '+'
+                    parts = False
+                    #right = False
+                    return True
+                else:
+                    computerShots.append([remainingRow, remainingColumn + 1])
+                    print("Errou!")
+                    campPlayer[remainingRow, remainingColumn + 1] = '-'
+                    right = True
+                    return False
+            else:
                 right = True
-        else:
-            right = True
-    elif (down == False):
-        if (remainingRow + 1 < 11):
-            print("Tiro em %d, %d" %(remainingRow, remainingColumn - 1))
-            if campPlayer[remainingRow + 1, remainingColumn] == '*':
-                computerShots.append([remainingRow + 1, remainingColumn])
-                print("Afundou!")
-                playerParts -= 1
-                campPlayer[remainingRow + 1, remainingColumn] = '+'
-                parts = False
-                right = False
-                return True
+        elif (down == False):
+            if (remainingRow + 1 < 11):
+                print("Tiro em %d, %d" %(remainingRow, remainingColumn - 1))
+                if campPlayer[remainingRow + 1, remainingColumn] == '*':
+                    computerShots.append([remainingRow + 1, remainingColumn])
+                    print("Afundou!")
+                    playerParts -= 1
+                    campPlayer[remainingRow + 1, remainingColumn] = '+'
+                    parts = False
+                    right = False
+                    return True
+                else:
+                    computerShots.append([remainingRow + 1, remainingColumn])
+                    print("Errou!")
+                    campPlayer[remainingRow + 1, remainingColumn] = '-'
+                    down = True
+                    return False
             else:
-                computerShots.append([remainingRow + 1, remainingColumn])
-                print("Errou!")
-                campPlayer[remainingRow + 1, remainingColumn] = '-'
                 down = True
-        else:
-            down = True
-    elif (left == False):
-        if (remainingColumn - 1 > 1):
-            print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn - 2))
-            if campPlayer[remainingRow, remainingColumn - 1] == '*':
-                computerShots.append([remainingRow, remainingColumn - 1])
-                print("Afundou!")
-                playerParts -= 1
-                campPlayer[remainingRow, remainingColumn - 1] = '+'
-                parts = False
-                right = False
-                down = False
-                return True
+        elif (left == False):
+            if (remainingColumn - 1 > 1):
+                print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn - 2))
+                if campPlayer[remainingRow, remainingColumn - 1] == '*':
+                    computerShots.append([remainingRow, remainingColumn - 1])
+                    print("Afundou!")
+                    playerParts -= 1
+                    campPlayer[remainingRow, remainingColumn - 1] = '+'
+                    parts = False
+                    right = False
+                    down = False
+                    return True
+                else:
+                    computerShots.append([remainingRow, remainingColumn - 1])
+                    print("Errou!")
+                    campPlayer[remainingRow, remainingColumn - 1] = '-'
+                    left = True
+                    return False
             else:
-                computerShots.append([remainingRow, remainingColumn - 1])
-                print("Errou!")
-                campPlayer[remainingRow, remainingColumn - 1] = '-'
                 left = True
-        else:
-            left = True
-    else:            
-        print("Tiro em %d, %d" %(remainingRow - 2, remainingColumn - 1))
-        computerShots.append([remainingRow - 1, remainingColumn])
-        print("Afundou!")
-        playerParts -= 1
-        campPlayer[remainingRow - 1, remainingColumn] = '+'
-        parts = False
-        right = False
-        down = False
-        left = False
-        return True
+        else:            
+            print("Tiro em %d, %d" %(remainingRow - 2, remainingColumn - 1))
+            computerShots.append([remainingRow - 1, remainingColumn])
+            print("Afundou!")
+            playerParts -= 1
+            campPlayer[remainingRow - 1, remainingColumn] = '+'
+            parts = False
+            right = False
+            down = False
+            left = False
+            return True
 
 # posicionamento dos navios
 print("\nPosicione seus navios...")
