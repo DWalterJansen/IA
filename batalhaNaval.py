@@ -39,6 +39,10 @@ right = False
 # Lista para guardar as jogadas já feitas pelo computador
 computerShots = list()
 
+# Lista para as possibilidades de jogadas feitas pelo jogador
+possiblePlayerShots = list(("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))
+
+
 # Linha e coluna do barco que ainda tem 1 parte para perder
 remainingRow = 0
 remainingColumn = 0
@@ -166,6 +170,7 @@ def shotComputer():
                 right = False
                 return True
 
+#Inicialização dos Campos
 print("\nPosicione seus navios...")
 for i in range(1,5):
     showCampPlayer()
@@ -195,6 +200,8 @@ for i in range(1,5):
             print("Posição inválida")
     addBoatComputer()
 showCampPlayer()
+
+#Realização de Jogadas
 startLottery = rd.randrange(1,3)
 if (startLottery == 1):
     print("\nVocê começa jogando")
@@ -209,9 +216,17 @@ while True:
         print("\nINICIANDO TURNO %d" %shift)
         print("\nVisão atual do campo inimigo:")
         showCampShots()
-        print("\nInicie sua jogada:")
-        row = int(input("\tLinha:"))
-        column = int(input("\tColuna:"))
+        while True:
+            print("\nInicie sua jogada:")
+            row = input("\tLinha:")
+            column = input("\tColuna:")
+            if (row in possiblePlayerShots and column in possiblePlayerShots):
+                row = int(row)
+                column = int(column)
+                break
+            else:
+                print("Posição inválida!\n")
+                
         shotPlayer(row, column)
         print("Partes restantes do computador: %d" %computerParts)
         if computerParts == 0 :
@@ -241,9 +256,17 @@ while True:
         # Vez do jogador
         print("\nVisão atual do campo inimigo:")
         showCampShots()
-        print("\nInicie sua jogada:")
-        row = int(input("\tLinha:"))
-        column = int(input("\tColuna:"))
+        while True:
+            print("\nInicie sua jogada:")
+            row = input("\tLinha:")
+            column = input("\tColuna:")
+            if (row in possiblePlayerShots and column in possiblePlayerShots):
+                row = int(row)
+                column = int(column)
+                break
+            else:
+                print("Posição inválida!\n")
+              
         shotPlayer(row, column)
         print("Unidades partes do computador: %d" %computerParts)
         if computerParts == 0 :
