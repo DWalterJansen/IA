@@ -419,14 +419,14 @@ for i in range(1, 5):
                             break
                         else:
                             print("Posição inválida")
-                    elif (column == 8 and campPlayer[row + 1, column] != '*'):
-                        if (row > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and row < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                    elif (row == 8 and campPlayer[row + 1, column] != '*'):
+                        if (column > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and column < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
-                        elif (row == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        elif (column == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
-                        elif (row == 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*'):
+                        elif (column == 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
                         else:
