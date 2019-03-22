@@ -349,7 +349,7 @@ def shotComputer():
             down = True
     elif (left == False):
         if (remainingColumn - 1 > 1):
-            print("Tiro em %d, %d" %(remainingRow, remainingColumn - 1))
+            print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn - 2))
             if campPlayer[remainingRow, remainingColumn - 1] == '*':
                 computerShots.append([remainingRow, remainingColumn - 1])
                 print("Afundou!")
@@ -367,7 +367,7 @@ def shotComputer():
         else:
             left = True
     else:            
-        print("Tiro em %d, %d" %(remainingRow - 1, remainingColumn))
+        print("Tiro em %d, %d" %(remainingRow - 2, remainingColumn - 1))
         computerShots.append([remainingRow - 1, remainingColumn])
         print("Afundou!")
         playerParts -= 1
