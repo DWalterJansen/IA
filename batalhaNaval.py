@@ -169,8 +169,8 @@ def addComputerShip():
                 # verifica se também não está sobrepondo algum outro navio
                 if (campComputer[row + 1, column + 1] != '*' and campComputer[row + 2, column + 1] != '*'):
                     # verifica se também não está colado em outro navio
-                    if (row > 0 and campComputer[row, column + 1] != '*' and row < 8 and campComputer[row + 3, column + 1] != '*'):
-                        if (column > 0 and campComputer[row + 1, column] != '*' and campComputer[row + 2, column] != '*' and column < 9 and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
+                    if (row > 0 and row < 8 and campComputer[row, column + 1] != '*' and campComputer[row + 3, column + 1] != '*'):
+                        if (column > 0 and column < 9 and campComputer[row + 1, column] != '*' and campComputer[row + 2, column] != '*' and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addVerticalComputerShip(row, column)
                             break
                         elif (column == 0 and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
@@ -182,7 +182,7 @@ def addComputerShip():
                         else:
                             print("Posição inválida")
                     elif (row == 0 and campComputer[row + 3, column + 1] != '*'):
-                        if (column > 0 and campComputer[row + 1, column] != '*' and campComputer[row + 2, column] != '*' and column < 9 and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
+                        if (column > 0 and column < 9 and campComputer[row + 1, column] != '*' and campComputer[row + 2, column] != '*' and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addVerticalComputerShip(row, column)
                             break
                         elif (column == 0 and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
@@ -193,14 +193,14 @@ def addComputerShip():
                             break
                         else:
                             print("Posição inválida")
-                    elif (column == 8 and campComputer[row + 1, column] != '*'):
-                        if (row > 0 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and row < 9 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
+                    elif (row == 8 and campComputer[row + 1, column] != '*'):
+                        if (column > 0 and column < 9 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addVerticalComputerShip(row, column)
                             break
-                        elif (row == 0 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
+                        elif (column == 0 and campComputer[row + 1, column + 2] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addVerticalComputerShip(row, column)
                             break
-                        elif (row == 9 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*'):
+                        elif (column == 9 and campComputer[row + 1, column] != '*' and campComputer[row + 2, column] != '*'):
                             addVerticalComputerShip(row, column)
                             break
                         else:
@@ -219,8 +219,8 @@ def addComputerShip():
                 # verifica se também não está sobrepondo algum outro navio
                 if (campComputer[row + 1, column + 1] != '*' and campComputer[row + 1, column + 2] != '*'):
                     # verifica se também não está colado em outro navio
-                    if (column > 0 and campComputer[row + 1, column] != '*' and column < 8 and campComputer[row + 1, column + 3] != '*'):
-                        if (row > 0 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and row < 9 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
+                    if (column > 0 and column < 8 and campComputer[row + 1, column] != '*' and campComputer[row + 1, column + 3] != '*'):
+                        if (row > 0 and row < 9 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addHorizontalComputerShip(row, column)
                             break
                         elif (row == 0 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
@@ -232,7 +232,7 @@ def addComputerShip():
                         else:
                             print("Posição inválida")
                     elif (column == 0 and campComputer[row + 1, column + 3] != '*'):
-                        if (row > 0 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and row < 9 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
+                        if (row > 0 and row < 9 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addHorizontalComputerShip(row, column)
                             break
                         elif (row == 0 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
@@ -244,7 +244,7 @@ def addComputerShip():
                         else:
                             print("Posição inválida")
                     elif (column == 8 and campComputer[row + 1, column] != '*'):
-                        if (row > 0 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and row < 9 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
+                        if (row > 0 and row < 9 and campComputer[row, column + 1] != '*' and campComputer[row, column + 2] != '*' and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
                             addHorizontalComputerShip(row, column)
                             break
                         elif (row == 0 and campComputer[row + 2, column + 1] != '*' and campComputer[row + 2, column + 2] != '*'):
@@ -291,7 +291,6 @@ def shotComputer():
     global left
     global remainingRow
     global remainingColumn
-    
     while True:
         if (parts == False):
             while (True):
@@ -400,8 +399,8 @@ for i in range(1, 5):
                 # verifica se também não está sobrepondo algum outro navio
                 if (campPlayer[row + 1, column + 1] != '*' and campPlayer[row + 2, column + 1] != '*'):
                     # verifica se também não está colado em outro navio
-                    if (row > 0 and campPlayer[row, column + 1] != '*' and row < 8 and campPlayer[row + 3, column + 1] != '*'):
-                        if (column > 0 and campPlayer[row + 1, column] != '*' and campPlayer[row + 2, column] != '*' and column < 9 and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                    if (row > 0 and row < 8 and campPlayer[row, column + 1] != '*' and campPlayer[row + 3, column + 1] != '*'):
+                        if (column > 0 and column < 9 and campPlayer[row + 1, column] != '*' and campPlayer[row + 2, column] != '*' and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
                         elif (column == 0 and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
@@ -413,7 +412,7 @@ for i in range(1, 5):
                         else:
                             print("Posição inválida")
                     elif (row == 0 and campPlayer[row + 3, column + 1] != '*'):
-                        if (column > 0 and campPlayer[row + 1, column] != '*' and campPlayer[row + 2, column] != '*' and column < 9 and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        if (column > 0 and column < 9 and campPlayer[row + 1, column] != '*' and campPlayer[row + 2, column] != '*' and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
                         elif (column == 0 and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
@@ -425,13 +424,13 @@ for i in range(1, 5):
                         else:
                             print("Posição inválida")
                     elif (row == 8 and campPlayer[row + 1, column] != '*'):
-                        if (column > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and column < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        if (column > 0 and column < 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
-                        elif (column == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        elif (column == 0 and campPlayer[row + 1, column + 2] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
-                        elif (column == 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*'):
+                        elif (column == 9 and campPlayer[row + 1, column] != '*' and campPlayer[row + 2, column] != '*'):
                             addVerticalPlayerShip(row, column)
                             break
                         else:
@@ -451,8 +450,8 @@ for i in range(1, 5):
                 # verifica se também não está sobrepondo algum outro navio
                 if (campPlayer[row + 1, column + 1] != '*' and campPlayer[row + 1, column + 2] != '*'):
                     # verifica se também não está colado em outro navio
-                    if (column > 0 and campPlayer[row + 1, column] != '*' and column < 8 and campPlayer[row + 1, column + 3] != '*'):
-                        if (row > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and row < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                    if (column > 0 and column < 8 and campPlayer[row + 1, column] != '*' and campPlayer[row + 1, column + 3] != '*'):
+                        if (row > 0 and row < 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addHorizontalPlayerShip(row, column)
                             break
                         elif (row == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
@@ -464,7 +463,7 @@ for i in range(1, 5):
                         else:
                             print("Posição inválida")
                     elif (column == 0 and campPlayer[row + 1, column + 3] != '*'):
-                        if (row > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and row < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        if (row > 0 and row < 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addHorizontalPlayerShip(row, column)
                             break
                         elif (row == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
@@ -476,7 +475,7 @@ for i in range(1, 5):
                         else:
                             print("Posição inválida")
                     elif (column == 8 and campPlayer[row + 1, column] != '*'):
-                        if (row > 0 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and row < 9 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
+                        if (row > 0 and row < 9 and campPlayer[row, column + 1] != '*' and campPlayer[row, column + 2] != '*' and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
                             addHorizontalPlayerShip(row, column)
                             break
                         elif (row == 0 and campPlayer[row + 2, column + 1] != '*' and campPlayer[row + 2, column + 2] != '*'):
