@@ -1,0 +1,205 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[array([1, 1]), array([1, 0]), array([0, 1]), array([0, 0])]\n",
+      "2\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "entrada = []\n",
+    "entrada.append(np.array([1, 1]))\n",
+    "entrada.append(np.array([1, 0]))\n",
+    "entrada.append(np.array([0, 1]))\n",
+    "entrada.append(np.array([0, 0]))\n",
+    "print(entrada)\n",
+    "\n",
+    "epocas=100\n",
+    "learning_rate=0.1\n",
+    "no_entradas = len(entrada[0])\n",
+    "\n",
+    "print(no_entradas)\n",
+    "\n",
+    "pesos = np.zeros(no_entradas + 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def predict(e,p):\n",
+    "    soma = 0\n",
+    "    soma = np.dot(e, p[:no_entradas])\n",
+    "    soma = soma + pesos[no_entradas]\n",
+    "    \n",
+    "    if soma > 0:\n",
+    "        activacao = 1\n",
+    "    \n",
+    "    else:\n",
+    "        activacao = 0\n",
+    "    \n",
+    "    return activacao\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def train():\n",
+    "    count = 0\n",
+    "    pesos_ant = pesos\n",
+    "    while(True):\n",
+    "        xy = zip(entrada, saida)\n",
+    "        for inputs, label in xy:\n",
+    "            prediction = predict(inputs, pesos)\n",
+    "            pesos[0] += learning_rate * (label - prediction) * inputs[0]\n",
+    "            pesos[1] += learning_rate * (label - prediction) * inputs[1]\n",
+    "            pesos[2] += learning_rate * (label - prediction)\n",
+    "            \n",
+    "            if (np.array_equal(pesos_ant, pesos)):\n",
+    "                count += 1\n",
+    "            else:\n",
+    "                count = 0\n",
+    "                pesos_ant = pesos\n",
+    "            print(\"Peso 1 = %f, Peso 2 = %f, Bias = %f\" %(pesos[0], pesos[1], pesos[2]))\n",
+    "            \n",
+    "            if(count > 10):\n",
+    "                return"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<h2> Port OR </h2>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Print Saída: [1 1 1 0]\n",
+      "Treino:\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Predição:\n",
+      "1 or 1 = 1\n",
+      "1 or 0 = 1\n",
+      "0 or 1 = 1\n",
+      "1 or 1 = 0\n"
+     ]
+    }
+   ],
+   "source": [
+    "saida = np.array([1, 1, 1, 0])\n",
+    "print(\"Print Saída: \", end='')\n",
+    "print(saida)\n",
+    "print(\"Treino:\")\n",
+    "train()\n",
+    "print(\"Predição:\")\n",
+    "print(\"1 or 1 = %d\" %predict(entrada[0], pesos))\n",
+    "print(\"1 or 0 = %d\" %predict(entrada[1], pesos))\n",
+    "print(\"0 or 1 = %d\" %predict(entrada[2], pesos))\n",
+    "print(\"1 or 1 = %d\" %predict(entrada[3], pesos))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<h2> Port AND </h2>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Print Saída: [1 0 0 0]\n",
+      "Treino:\n",
+      "Peso 1 = 0.200000, Peso 2 = 0.200000, Bias = -0.100000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Peso 1 = 0.100000, Peso 2 = 0.200000, Bias = -0.200000\n",
+      "Predição:\n",
+      "1 or 1 = 1\n",
+      "1 or 0 = 0\n",
+      "0 or 1 = 0\n",
+      "1 or 1 = 0\n"
+     ]
+    }
+   ],
+   "source": [
+    "saida = np.array([1, 0, 0, 0])\n",
+    "print(\"Print Saída: \", end='')\n",
+    "print(saida)\n",
+    "print(\"Treino:\")\n",
+    "train()\n",
+    "print(\"Predição:\")\n",
+    "print(\"1 or 1 = %d\" %predict(entrada[0], pesos))\n",
+    "print(\"1 or 0 = %d\" %predict(entrada[1], pesos))\n",
+    "print(\"0 or 1 = %d\" %predict(entrada[2], pesos))\n",
+    "print(\"1 or 1 = %d\" %predict(entrada[3], pesos))"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
